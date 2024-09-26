@@ -135,10 +135,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('demandeurs.liste')}}" class="nav-link">
+            <a href="{{ route('Utilisateur')}}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Listes Admins
+                Listes des Utilisateurs
               </p>
             </a>
           </li>

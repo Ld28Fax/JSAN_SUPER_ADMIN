@@ -6,6 +6,7 @@ use App\Http\Controllers\DemandeurController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -59,4 +60,5 @@ Route::post('/periode', [PeriodeController::class,'store']);
 
 Route::get('statistic', [PeriodeController::class, 'getStatistic'])->name('Periode');
 
+Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('Utilisateur');
 require __DIR__.'/auth.php';
