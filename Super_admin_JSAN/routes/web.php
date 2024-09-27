@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\DemandeurController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UtilisateurController;
+use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -23,16 +26,24 @@ use Illuminate\Support\Facades\Route;
 App::setLocale('fr'); // ou 'en' pour anglais
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/super_admin', [SuperAdminController::class, 'index'])->middleware('SuperAdminMiddleware')->name('superAdmin');
+
+
 Route::get('/dashboard', [HomeController::class, 'home_liste'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 Route::get('/demandeur', [DemandeurController::class,'index'])->middleware(['auth', 'verified'])->name('demandeurs.index');
@@ -61,4 +72,8 @@ Route::post('/periode', [PeriodeController::class,'store']);
 Route::get('statistic', [PeriodeController::class, 'getStatistic'])->name('Periode');
 
 Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('Utilisateur');
+
+Route::get('/error-page', function () {
+    return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views
+})->name('error.page');
 require __DIR__.'/auth.php';
