@@ -31,8 +31,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/super_admin', [SuperAdminController::class, 'index'])->middleware('SuperAdminMiddleware')->name('superAdmin');
-
 
 Route::get('/dashboard', [HomeController::class, 'home_liste'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -76,4 +74,5 @@ Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('Utili
 Route::get('/error-page', function () {
     return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views
 })->name('error.page');
+
 require __DIR__.'/auth.php';

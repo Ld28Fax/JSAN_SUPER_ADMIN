@@ -23,22 +23,20 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-    
+
         $request->session()->regenerate();
-    
-        // Vérifie le type d'utilisateur et redirige en conséquence
-        $user = Auth::user();
-    
-        if ($user->usertype == 0) {
-            // Redirige vers la page pour les super admins
-            return redirect()->route('superAdmin');
-        } else {
-            // Redirige vers la page d'accueil ou le tableau de bord par défaut
-            return redirect()->route('error-page');
+
+        if (Auth::user()->usertype != 0){
+            Auth::logout();
+            return redirect('/error-page')->with('error', 'Vous n\'etes pas autorisé à vous connecter');
         }
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
