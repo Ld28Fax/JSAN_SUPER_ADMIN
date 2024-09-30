@@ -108,7 +108,7 @@
               @csrf
               <x-dropdown-link :href="route('logout')"
                 onclick="event.preventDefault();
-                this.closest('form').submit();" class="btn btn-primary btn-block text-white">
+                this.closest('form').submit();" class="btn btn-success btn-block text-white">
                 <i class="zmdi zmdi-power"></i>
                 {{ __('Déconnecter') }}
               </x-dropdown-link>

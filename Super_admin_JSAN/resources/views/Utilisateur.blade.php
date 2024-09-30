@@ -48,14 +48,16 @@
                 <div>
                   <div class="btn-group w-100 mb-2">
                     <a class="btn btn-info active" href="javascript:void(0)" data-filter="all">Tous les Utilisateurs</a>
-                    <a class="btn btn-info" href="javascript:void(0)" data-filter="1">ANTANANARIVO (WHITE) </a>
-                    <a class="btn btn-info" href="javascript:void(0)" data-filter="2">TOLIARA (BLACK) </a>
-                    <a class="btn btn-info" href="javascript:void(0)" data-filter="3">TAMATAVE (COLORED) </a>
-                    <a class="btn btn-info" href="javascript:void(0)" data-filter="4"> Category 4 (COLORED, BLACK) </a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="1">ANTANANARIVO</a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="2">ANTSIRANANA</a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="2">FIANARANTSOA</a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="3">MAHAJANGA</a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="4">TOAMASINA</a>
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="2">TOLIARA</a>
                   </div>
                   <div class="mb-2">
-                    <a class="btn btn-secondary" href="javascript:void(0)" data-shuffle> Shuffle items </a>
-                    <div class="float-right">
+                    <a class="btn btn-secondary" href="javascript:void(0)" data-shuffle> Mélangez les éléments</a>
+                    {{-- <div class="float-right">
                       <select class="custom-select" style="width: auto;" data-sortOrder>
                         <option value="index"> Sort by Position </option>
                         <option value="sortData"> Sort by Custom Data </option>
@@ -64,7 +66,7 @@
                         <a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascending </a>
                         <a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Descending </a>
                       </div>
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
                 <div>

@@ -69,7 +69,7 @@ Route::post('/periode', [PeriodeController::class,'store']);
 
 Route::get('statistic', [PeriodeController::class, 'getStatistic'])->name('Periode');
 
-Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('Utilisateur');
+Route::get('/liste_utilisateur', [UtilisateurController::class, 'index'])->name('Utilisateur');
 
 Route::get('/error-page', function () {
     return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views

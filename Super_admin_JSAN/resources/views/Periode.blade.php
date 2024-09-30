@@ -41,7 +41,7 @@
                         <h2 class="nav-link  btn-default text-blue">{{ $statisticCount }}</h2>
                       </li>
                   <table id="example1" class="table table-bordered table-striped ">
-                    <thead>
+                    <thead style='background:green; opacity:0.5'>
                     <tr>
                       <th>Id</th>
                       <th>Nom</th>
