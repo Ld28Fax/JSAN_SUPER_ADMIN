@@ -167,7 +167,7 @@
 <!-- Filterizr-->
 <script src="extern/plugins/filterizr/jquery.filterizr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="extern/dist/js/demo.js"></script>
+{{-- <script src="extern/dist/js/demo.js"></script> --}}
 <!-- Page specific script -->
 <script>
   $(function () {
