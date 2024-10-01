@@ -3,6 +3,8 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CalendrierController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CourAppelController;
 use App\Http\Controllers\DemandeurController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeriodeController;
@@ -61,6 +63,9 @@ Route::get('/Non_actif/{id?}', [DemandeurController::class,'non_actif'])->middle
 
 Route::get('/About', [AboutController::class,'index'])->name('About');
 
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contactUser', [ContactController::class, 'contact'])->name('contact');
+
 
 Route::get('/demandeurs/edit/{id}', [DemandeurController::class, 'edit'])->name('demandeurs.edit');
 Route::post('/demandeurs', [DemandeurController::class, 'update'])->name('demandeurs.update');
@@ -74,5 +79,9 @@ Route::get('/liste_utilisateur', [UtilisateurController::class, 'index'])->name(
 Route::get('/error-page', function () {
     return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views
 })->name('error.page');
+
+Route::get('/Cour_appel', [CourAppelController::class, 'index'])->name('Utilisateur');
+Route::get('/UtilisateurTpi/{id?}', [CourAppelController::class, 'Utilisateur'])->name('UtilisateurTpi');
+
 
 require __DIR__.'/auth.php';

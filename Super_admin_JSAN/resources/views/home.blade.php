@@ -82,32 +82,6 @@
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Nombre de greffiers</span>
-                    <span class="info-box-number">2,000</span>
-                </div>
-                <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Nombres d'admin</span>
-                    <span class="info-box-number">2,000</span>
-                </div>
-                <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
             </div>
             
             <!-- Main row -->
@@ -133,7 +107,7 @@
                 <div class="card-body p-0">
                     <div class="table-responsive">
                     <table class="table m-0">
-                        <thead>
+                        <thead style='background:green; opacity:0.5'>
                             <tr>
                                 <th>Id</th>
                                 <th>Nom</th>
@@ -142,7 +116,7 @@
                                 <th>Lieu de Naissance</th>
                               </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="background:grey">
                             @foreach ( $demandeurs as $demandeur )
                                 
                             <tr>

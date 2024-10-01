@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="extern/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="extern/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="extern/dist/css/welcome.css">
 </head>
 {{-- <body class="hold-transition sidebar-mini"> --}}
     @extends('dashboard')
@@ -49,15 +50,13 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped ">
-                  <thead>
+                  <thead style='background:green; opacity:0.5'>
                   <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Date de Naissance</th>
                     <th>Lieu de Naissance</th>
-                    <th>Modifier</th>
                     <th>Status</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -68,34 +67,23 @@
                               <td>{{$demandeur->Nom}}</td>
                               <td>{{$demandeur->Date_de_Naissance}}</td>
                               <td>{{$demandeur->Lieu_de_Naissance}}</td>
-                              <td><a class="btn btn-primary" href="{{ route("demandeurs.edit" , ['id'=>$demandeur->id]) }}">Modifier</a></td>
                             <td>
                               <div>
                                 <span class="p-2 status-text">Non traiter</span>
                                 <span class="badge status-badge bg-danger"><i class="fas fa-times"></i></span>
                               </div>
                             </td>
-                            <td>
-                              <button type="button" class="btn btn-block btn-success">
-                                <a href="{{ route('demandeurActiver',['id' => $demandeur->id])}}" class="text-white">Activer</a>
-                              </button>
-                            </td>
                           @else
-                          <tr id="row-{{ $loop->index }}" class="table-primary">
+                          <tr id="row-{{ $loop->index }}" class="grey">
                             <td>{{$demandeur->id}}</td>
                             <td>{{$demandeur->Nom}}</td>
                             <td>{{$demandeur->Date_de_Naissance}}</td>
                             <td>{{$demandeur->Lieu_de_Naissance}}</td>
-                            <td><a class="btn btn-primary" href="{{ route("demandeurs.edit" , ['id'=>$demandeur->id]) }}">Modifier</a></td>
                             <td id="status-{{ $loop->index }}">
                               <div>
                                 <span class="p-2 status-text">Traiter</span>
                                 <span class="badge status-badge bg-success"><i class="fas fa-check"></i></span>
                               </div>
-                            </td>
-                            <td>
-                              {{-- <button type="button" class="btn btn-block btn-danger"><a href="{{ route('demandeurDesactiver',['id' => $demandeur->id])}}" class="text-white">Desactiver</a></button> --}}
-                              
                             </td>
                             @endif
                         </tr>

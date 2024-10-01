@@ -51,7 +51,6 @@
                 <table id="example1" class="table table-bordered table-striped ">
                   <thead style='background:green; opacity:0.5'>
                   <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Date de Naissance</th>
                     <th>Lieu de Naissance</th>
@@ -63,7 +62,6 @@
                   <tbody>
                     @forelse ($demandeurs as $demandeur )
                           <tr>
-                            <td>{{$demandeur->id}}</td>
                             <td>{{$demandeur->Nom}}</td>
                             <td>{{$demandeur->Date_de_Naissance}}</td>
                             <td>{{$demandeur->Lieu_de_Naissance}}</td>

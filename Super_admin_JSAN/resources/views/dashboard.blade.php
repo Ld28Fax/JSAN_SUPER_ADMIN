@@ -29,7 +29,7 @@
         <a href="{{'dashboard'}}" class="nav-link">Acceuil</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{route('contact')}}" class="nav-link">Contact</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <span class="nav-link  btn-default text-blue">SUPER ADMIN</span>
@@ -102,7 +102,7 @@
                 
               </div>
 
-              <a href="{{ route('profile.edit') }}"><h3 class="profile-username text-center">{{ Auth::user()->name }}</h3></a>
+              <a href="{{ route('profile.edit') }}"><h3 class="profile-username text-center">{{Auth::user()->name}}</h3></a>
 
               <form method="POST" action="{{ route('logout') }}">
               @csrf
