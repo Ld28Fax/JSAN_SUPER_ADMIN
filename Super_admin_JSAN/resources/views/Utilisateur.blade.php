@@ -60,7 +60,6 @@
                 <div>
                   <div class="filter-container p-0 row">
                     @foreach($coursAppels as $coursAppel)
-                    {{-- {{ dd($coursAppel->tpis) }} --}}
                       @foreach($coursAppel->tpis as $tpi)
                         <div class="filtr-item col-sm-2" data-category="{{ $coursAppel->id }}" data-sort="{{ $tpi->nom }}">
                           <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="sample {{ $tpi->nom }}">
