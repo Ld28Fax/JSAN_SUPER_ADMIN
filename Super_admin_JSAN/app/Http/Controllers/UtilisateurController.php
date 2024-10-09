@@ -9,5 +9,8 @@ class UtilisateurController extends Controller
     public function index(){
         return view('Utilisateur');
     }
+    public function Utilisateur(){
+        
+    }
     
 }

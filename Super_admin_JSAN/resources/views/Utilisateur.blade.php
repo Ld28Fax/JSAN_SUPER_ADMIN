@@ -47,19 +47,17 @@
               <div class="card-body">
                 <div>
                   <div class="btn-group w-100 mb-2">
-                    <a class="btn active" style="background: green; opacity:0.5" href="javascript:void(0)" data-filter="all">Tous les Utilisateurs</a>
+                    <a class="btn active" style="background: white; opacity:0.5" href="javascript:void(0)" data-filter="all">Tous les Utilisateurs</a>
                     @foreach($coursAppels as $coursAppel)
-                      {{-- <a class="btn" style="background: green; opacity:0.5" href="javascript:void(0)" data-filter="{{ $coursAppel->id }}">
+                      <a class="btn" style="background: white; opacity:0.5" href="javascript:void(0)" data-filter="{{ $coursAppel->id }}">
                         {{ $coursAppel->nom }}
-                      </a> --}}
-                      <a href="{{ route('UtilisateurTpi', ['id'=> $coursAppel->id]) }}">{{ $coursAppel->nom }}</a>
-
+                      </a>
                     @endforeach
                   </div>
                 </div>
                 <div>
                   <div class="filter-container p-0 row">
-                    @foreach($coursAppels as $coursAppel)
+                    {{-- @foreach($coursAppels as $coursAppel)
                       @foreach($coursAppel->tpis as $tpi)
                         <div class="filtr-item col-sm-2" data-category="{{ $coursAppel->id }}" data-sort="{{ $tpi->nom }}">
                           <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="sample {{ $tpi->nom }}">
@@ -67,7 +65,7 @@
                           </a>
                         </div>
                         @endforeach
-                    @endforeach
+                    @endforeach --}}
                   </div>
                 </div>
 
