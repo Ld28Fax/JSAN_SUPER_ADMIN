@@ -13,4 +13,9 @@ class Tpi extends Model
     {
         return $this->belongsTo(CourAppel::class, 'cour_appel_id');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'tpi_id');
+    }
 }

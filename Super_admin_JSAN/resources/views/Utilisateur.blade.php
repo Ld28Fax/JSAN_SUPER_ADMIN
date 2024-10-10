@@ -14,33 +14,36 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="extern/dist/css/adminlte.min.css">
 </head>
+<style>
+  .filtr-item {
+    text-align: center; /*Centre le contenu à l'intérieur de chaque boîte */
+    background-color: #f5f5f5; /* Couleur de fond pour chaque boîte */
+    border: 1px solid #ddd; /* Ajoute une bordure légère pour bien délimiter */
+}
 
+.filtr-item a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: #333; /* Couleur du texte à l'intérieur des boîtes */
+    font-size: 18px; /* Augmente la taille du texte */
+    font-weight: bold; /* Rend le texte plus visible */
+}
+
+.filtr-item:hover {
+    background-color: #e0e0e0; /* Change légèrement la couleur au survol pour un effet interactif */
+}
+
+
+
+</style>
 @extends('dashboard')
 @section('content')
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Gallery</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Gallery</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="card card-success">
+            <div class="card card-success" style="margin-top: 5%">
               <div class="card-header">
                 <h4 class="card-title">Utilisateurs</h4>
               </div>
@@ -56,17 +59,43 @@
                   </div>
                 </div>
                 <div>
-                  <div class="filter-container p-0 row">
-                    {{-- @foreach($coursAppels as $coursAppel)
-                      @foreach($coursAppel->tpis as $tpi)
-                        <div class="filtr-item col-sm-2" data-category="{{ $coursAppel->id }}" data-sort="{{ $tpi->nom }}">
-                          <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="sample {{ $tpi->nom }}">
-                            <img src="https://via.placeholder.com/300/FFFFFF?text={{ $tpi->nom }}" class="img-fluid mb-2" alt="{{ $tpi->nom }}"/>
-                          </a>
-                        </div>
-                        @endforeach
-                    @endforeach --}}
-                  </div>
+
+                  <div class="filter-container p-0 row" style="margin-left: 0.2%">
+                    <table class="table table-dark table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Cour d'Appel</th>
+                                <th>TPI</th>
+                                <th>Utilisateur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($coursAppels as $coursAppel)
+                                @foreach($coursAppel->tpi as $tpi)
+                                    <tr data-category="{{ $coursAppel->id }}" data-sort="{{ $tpi->nom }}">
+                                        <td>{{ $coursAppel->nom }}</td> <!-- Affiche le nom de la Cour d'Appel -->
+                                        <td>{{ $tpi->nom }}</td> <!-- Affiche le nom du TPI -->
+                                        <td>
+                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="{{ $tpi->nom }}">
+                                                {{-- <img src="https://via.placeholder.com/300/FFFFFF?text={{ $tpi->nom }}" class="img-fluid mb-2" alt="{{ $tpi->nom }}" style="width: 100px;"/> --}}
+                                              </a>
+                                              @if ($tpi->users)
+                                              <ul>
+                                                @foreach($tpi->users as $user)
+                                                    <li>{{ $user->name }}</li>
+                                                @endforeach
+                                              </ul>
+                                              @else
+                                              <p>nothing</p>
+                                              @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                
                 </div>
 
               </div>
@@ -121,6 +150,37 @@
       $(this).addClass('active');
     });
   })
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+        // Gestion du clic sur les boutons
+        const buttons = document.querySelectorAll('.btn-group .btn');
+        const rows = document.querySelectorAll('table tbody tr');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                const filter = this.getAttribute('data-filter');
+
+                // Enlever l'état "active" des autres boutons
+                buttons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Afficher toutes les lignes si le filtre est "all"
+                if (filter === 'all') {
+                    rows.forEach(row => row.style.display = '');
+                } else {
+                    // Afficher uniquement les lignes correspondant à la Cour d'Appel sélectionnée
+                    rows.forEach(row => {
+                        if (row.getAttribute('data-category') === filter) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
 @endsection
 </body>

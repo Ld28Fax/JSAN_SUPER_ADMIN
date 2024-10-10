@@ -80,7 +80,7 @@ Route::get('/error-page', function () {
     return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views
 })->name('error.page');
 
-Route::get('/Cour_appel', [CourAppelController::class, 'index'])->name('Utilisateur');
+Route::get('/Cour_appel', [UtilisateurController::class, 'index'])->name('Utilisateur');
 Route::get('/UtilisateurTpi/{id?}', [CourAppelController::class, 'Utilisateur'])->name('UtilisateurTpi');
 
 
