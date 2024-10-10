@@ -66,7 +66,8 @@
                             <tr>
                                 <th>Cour d'Appel</th>
                                 <th>TPI</th>
-                                <th>Utilisateur</th>
+                                <th>Image</th>
+                                <th>Utilisateurs</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,18 +78,17 @@
                                         <td>{{ $tpi->nom }}</td> <!-- Affiche le nom du TPI -->
                                         <td>
                                             <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="{{ $tpi->nom }}">
-                                                {{-- <img src="https://via.placeholder.com/300/FFFFFF?text={{ $tpi->nom }}" class="img-fluid mb-2" alt="{{ $tpi->nom }}" style="width: 100px;"/> --}}
+                                                <img src="https://via.placeholder.com/300/FFFFFF?text={{ $tpi->nom }}" class="img-fluid mb-2" alt="{{ $tpi->nom }}" style="width: 100px;"/>
                                               </a>
-                                              @if ($tpi->users)
-                                              <ul>
-                                                @foreach($tpi->users as $user)
-                                                    <li>{{ $user->name }}</li>
-                                                @endforeach
-                                              </ul>
-                                              @else
-                                              <p>nothing</p>
-                                              @endif
                                         </td>
+                                        <td>
+                                          <ul>
+                                              @foreach($tpi->users as $user) <!-- Boucle sur les utilisateurs associés au TPI -->
+                                                  <li>{{ $user->name }} - {{ $user->email }}</li> <!-- Affiche le nom et l'email de l'utilisateur -->
+                                              @endforeach
+                                          </ul>
+                                      </td>
+                                  </tr>
                                     </tr>
                                 @endforeach
                             @endforeach
