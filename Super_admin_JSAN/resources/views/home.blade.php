@@ -5,83 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>home</title>
+    <style>
+        .number-shadow {
+            font-size: 5em!important;
+            color: grey;
+        }
+    </style>
 </head>
 <body>
+
 @extends('dashboard')
 @section('content')
-
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 d-block brand-text font-weight-light">BIENVENUE SUR LA PAGE D'ACCEUIL</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route ('dashboard')}}">Acceuil</a></li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <!-- Main content -->
+    <section class="content-header">
         <section class="content">
-        <div class="container-fluid">
+            <div class="container-fluid">
             <!-- Info boxes -->
             <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeurs }}</h3>
+                            <h4>Total Demandeurs</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Total Demandeurs</span>
-                    <span class="info-box-number">
-                        {{ $nombreDemandeurs }}
-                    <small>Personnes</small>
-                    </span>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursActif }}</h3>
+                            <h4>Dossier Accepter</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">Verifier</span>
-                    <span class="info-box-number" >{{ $nombreDemandeursActif }}
-                        <small>Personnes</small>
-                    </span>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursRefusé }}</h3>
+                            <h4>Dossier Refusé</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-times"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Non Verifier</span>
-                    <span class="info-box-number">{{ $nombreDemandeursInactif }}
-                        <small>Personnes</small>
-                    </span>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursInactif }}</h3>
+                            <h4 style="color: white">En cours de traitement</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-hourglass-start"></i>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
             </div>
             
             <!-- Main row -->
@@ -92,7 +83,7 @@
                 <!-- TABLE: LATEST ORDERS -->
                 <div class="card">
                 <div class="card-header border-transparent">
-                    <h3 class="card-title">Greffiers recents</h3>
+                    <h3 class="card-title">Demandeurs recents</h3>
 
                     <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -107,20 +98,18 @@
                 <div class="card-body p-0">
                     <div class="table-responsive">
                     <table class="table m-0">
-                        <thead style='background:green; opacity:0.5'>
+                        <thead style="background: green; opacity:0.5">
                             <tr>
-                                <th>Id</th>
                                 <th>Nom</th>
                                 <th>Adresse</th>
                                 <th>Date de Naissance</th>
                                 <th>Lieu de Naissance</th>
                               </tr>
                         </thead>
-                        <tbody style="background:grey">
+                        <tbody style='background:grey'>
                             @foreach ( $demandeurs as $demandeur )
                                 
                             <tr>
-                                <td>{{$demandeur->id}}</td>
                                 <td>{{$demandeur->Nom}}</td>
                                 <td>{{$demandeur->Adresse}}</td>
                                 <td>{{$demandeur->Date_de_Naissance}}</td>
@@ -134,7 +123,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+                    <a href="{{ route('demandeurs.liste') }}" class="btn btn-sm btn-secondary float-right">Voir tous les demandeurs</a>
                 </div>
                 <!-- /.card-footer -->
                 </div>

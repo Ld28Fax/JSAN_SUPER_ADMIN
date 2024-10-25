@@ -16,29 +16,29 @@
 </head>
 <style>
   .filtr-item {
-    text-align: center; /*Centre le contenu à l'intérieur de chaque boîte */
-    background-color: #f5f5f5; /* Couleur de fond pour chaque boîte */
-    border: 1px solid #ddd; /* Ajoute une bordure légère pour bien délimiter */
+    text-align: center;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
 }
 
 .filtr-item a {
-    text-decoration: none; /* Supprime le soulignement des liens */
-    color: #333; /* Couleur du texte à l'intérieur des boîtes */
-    font-size: 18px; /* Augmente la taille du texte */
-    font-weight: bold; /* Rend le texte plus visible */
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .filtr-item:hover {
-    background-color: #e0e0e0; /* Change légèrement la couleur au survol pour un effet interactif */
+    background-color: #e0e0e0;
 }
 
 
 
 </style>
+<body>
 @extends('dashboard')
 @section('content')
 
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -66,7 +66,6 @@
                             <tr>
                                 <th>Cour d'Appel</th>
                                 <th>TPI</th>
-                                <th>Image</th>
                                 <th>Utilisateurs</th>
                             </tr>
                         </thead>
@@ -74,17 +73,12 @@
                             @foreach($coursAppels as $coursAppel)
                                 @foreach($coursAppel->tpi as $tpi)
                                     <tr data-category="{{ $coursAppel->id }}" data-sort="{{ $tpi->nom }}">
-                                        <td>{{ $coursAppel->nom }}</td> <!-- Affiche le nom de la Cour d'Appel -->
-                                        <td>{{ $tpi->nom }}</td> <!-- Affiche le nom du TPI -->
-                                        <td>
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text={{ $tpi->nom }}" data-toggle="lightbox" data-title="{{ $tpi->nom }}">
-                                                <img src="https://via.placeholder.com/300/FFFFFF?text={{ $tpi->nom }}" class="img-fluid mb-2" alt="{{ $tpi->nom }}" style="width: 100px;"/>
-                                              </a>
-                                        </td>
+                                        <td>{{ $coursAppel->nom }}</td>
+                                        <td>{{ $tpi->nom }}</td>
                                         <td>
                                           <ul>
-                                              @foreach($tpi->users as $user) <!-- Boucle sur les utilisateurs associés au TPI -->
-                                                  <li>{{ $user->name }} - {{ $user->email }}</li> <!-- Affiche le nom et l'email de l'utilisateur -->
+                                              @foreach($tpi->users as $user)
+                                                  <li>{{ $user->name }} - {{ $user->email }}</li>
                                               @endforeach
                                           </ul>
                                       </td>

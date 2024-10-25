@@ -17,25 +17,11 @@
   <link rel="stylesheet" href="extern/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="extern/dist/css/welcome.css">
 </head>
-{{-- <body class="hold-transition sidebar-mini"> --}}
+<body>
     @extends('dashboard')
     @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Listes des demandeurs</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Acceuil</a></li>
-              <li class="breadcrumb-item active"><a href="{{ route('demandeurs.liste')}}">Liste des demandeurs</a></li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
@@ -54,8 +40,6 @@
                   <tr>
                     <th>Id</th>
                     <th>Nom</th>
-                    <th>Date de Naissance</th>
-                    <th>Lieu de Naissance</th>
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -65,8 +49,6 @@
                             <tr id="row-{{ $loop->index }}">
                               <td>{{$demandeur->id}}</td>
                               <td>{{$demandeur->Nom}}</td>
-                              <td>{{$demandeur->Date_de_Naissance}}</td>
-                              <td>{{$demandeur->Lieu_de_Naissance}}</td>
                             <td>
                               <div>
                                 <span class="p-2 status-text">Non traiter</span>
@@ -74,11 +56,9 @@
                               </div>
                             </td>
                           @else
-                          <tr id="row-{{ $loop->index }}" class="grey">
+                          <tr id="row-{{ $loop->index }}">
                             <td>{{$demandeur->id}}</td>
                             <td>{{$demandeur->Nom}}</td>
-                            <td>{{$demandeur->Date_de_Naissance}}</td>
-                            <td>{{$demandeur->Lieu_de_Naissance}}</td>
                             <td id="status-{{ $loop->index }}">
                               <div>
                                 <span class="p-2 status-text">Traiter</span>

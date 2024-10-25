@@ -21,20 +21,18 @@
                 @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="white">Dashboard</a></li>
+                    <a href="{{ url('/dashboard') }}" class="white">Accueil</a></li>
                 @else
                     <span>Acceuil</span>
                     @endauth
                 @endif
-             {{-- <li><a href="{{ route('About') }}" class="white">Documentation</a></li> --}}
-             <li>Services</li>
              <li><a href="#" class="white">Contact</a></li>
          </ul>
          <div class="search">
             @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="btn btn-outline-light">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" class="btn btn-outline-light">Accueil</a>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-light">Log in</a>
         
