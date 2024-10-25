@@ -48,18 +48,18 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-6">
+                {{-- <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursRefusé }}</h3>
-                            <h4>Dossier Refusé</h4>
+                            <h4>Dossier Renvoyé</h4>
                         </div>
                         <div class="icon">
                             <i class="fas fa-times"></i>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
