@@ -10,10 +10,8 @@ class UtilisateurController extends Controller
 {
     public function index (){
         $coursAppels = CourAppel::with('tpi')->get();
-        $users = Utilisateur::with('tpi')->get();
+        $users = Utilisateur::with('tpi')->where('usertype',2)->get();
 
         return view('Utilisateur')->with('coursAppels', $coursAppels)->with('users', $users);
     }
-    
-    
 }
