@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demandeur;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DemandeurController extends Controller
@@ -14,58 +16,6 @@ class DemandeurController extends Controller
         return view('demandeurs.index');
     }
 
-    public function create(Request $request){
-        try{
-            $request->validate([
-                "Nom"=> "required|string|max:255",
-                "Date_de_Naissance"=> "required|date_format:Y-m-d",
-                "Lieu_de_Naissance"=> "required|string|max:255",
-                "Pere"=> "required|string|max:255",
-                "Mere"=> "required|string|max:255",
-                "Adresse"=> "required|string|max:255",
-                'Telephone' => ['required', 'numeric', 'digits:10', 'regex:/^(032|033|034|038)[0-9]{7}$/'],
-
-            ]);
-
-            Demandeur::create($request->all());
-            return redirect()->route("demandeurs.liste")->with("success","Demandeur enregister");
-
-        } 
-        catch (Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-
-    public function edit($id)
-    {
-    try{
-        $demandeur = Demandeur::findOrFail($id);
-        return view('demandeurs.edit')->with('demandeur', $demandeur);
-    } catch (Exception $e){
-        throw new Exception($e->getMessage());
-    }
-    }
-
-    public function update(Request $request)
-    {
-    try{
-        $request->validate([
-            "Nom"=> "required|string|max:255",
-            "Date_de_Naissance"=> "required|date_format:Y-m-d",
-            "Lieu_de_Naissance"=> "required|string|max:255",
-            "Pere"=> "required|string|max:255",
-            "Mere"=> "required|string|max:255",
-            "Adresse"=> "required|string|max:255",
-            'Telephone' => [ 'required','numeric', 'digits:10', 'regex:/^(032|033|034|038)[0-9]{7}$/'],
-            'id' => "required"
-        ]);
-        Demandeur::modifier( $request->id, $request->Nom, $request->Date_de_Naissance, $request->Lieu_de_Naissance, $request->Pere, $request->Mere, $request->Adresse, $request->Telephone );
-        return redirect()->route('demandeurs.liste')->with('success','Demandeur mis à jour avec succès.');
-    } catch (Exception $e){
-        throw new Exception($e->getMessage());
-    }
-
-    }
     public function liste(){
         try{
             $demandeurs = DB::table('demandeur')->get();
@@ -95,12 +45,62 @@ class DemandeurController extends Controller
         }
     }
 
-    public function Statistique(){
-        try{
-            $nombreDemandeursTotal = DB::table('demandeur')->get();
-        }catch(Exception $e){
-            throw new Exception($e->getMessage());
-        }
+    public function filtrerStatistiques(Request $request)
+    {
+        $debut_jour = $request->input('debut_jour');
+        $debut_mois = $request->input('debut_mois');
+        $fin_jour = $request->input('fin_jour');
+        $fin_mois = $request->input('fin_mois');
+    
+        $debut = Carbon::create(null, $debut_mois, $debut_jour);
+        $fin = Carbon::create(null, $fin_mois, $fin_jour)->endOfDay();
+    
+        $nombreDemandeursPeriode = DB::table('demandeur')
+            ->where('usertpi', '=', Auth::id())
+            ->whereBetween('created_at', [$debut, $fin])
+            ->count();
+        
+        $nombreDemandeursActifPeriode = DB::table('demandeur')
+            ->where('usertpi', '=', Auth::id())
+            ->where('etat', '=', 1)
+            ->whereBetween('created_at', [$debut, $fin])
+            ->count();
+            
+        $nombreDemandeursInactifPeriode = DB::table('demandeur')
+            ->where('usertpi', '=', Auth::id())
+            ->where('etat', '=', 0)
+            ->whereBetween('created_at', [$debut, $fin])
+            ->count();
+            
+        $nombreDemandeursRefuséPeriode = DB::table('demandeur')
+            ->where('usertpi', '=', Auth::id())
+            ->where('etat', '=', 2)
+            ->whereBetween('created_at', [$debut, $fin])
+            ->count();
+    
+    
+        $nombreDemandeurs = DB::table('demandeur')->where('usertpi', '=', Auth::id())->count();           
+        
+        $nombreDemandeursActif = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 1)->count();
+        
+        $nombreDemandeursInactif = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 0)->count();
+        
+        $nombreDemandeursRefusé = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 2)->count();
+
+    
+        return view('demandeurs.statistique')
+        ->with('nombreDemandeursPeriode', $nombreDemandeursPeriode)
+        ->with('nombreDemandeursActifPeriode', $nombreDemandeursActifPeriode)
+        ->with('nombreDemandeursInactifPeriode', $nombreDemandeursInactifPeriode)
+        ->with('nombreDemandeursRefuséPeriode', $nombreDemandeursRefuséPeriode)
+        ->with('debut_jour', $debut_jour)
+        ->with('debut_mois', $debut_mois)
+        ->with('fin_jour', $fin_jour)
+        ->with('fin_mois', $fin_mois)
+        ->with('nombreDemandeurs', $nombreDemandeurs)
+        ->with('nombreDemandeursActif', $nombreDemandeursActif)
+        ->with('nombreDemandeursInactif', $nombreDemandeursInactif)
+        ->with('nombreDemandeursRefusé', $nombreDemandeursRefusé);
     }
 
 }

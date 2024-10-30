@@ -83,5 +83,6 @@ Route::get('/error-page', function () {
 Route::get('/Cour_appel', [UtilisateurController::class, 'index'])->name('Utilisateur');
 Route::get('/UtilisateurTpi/{id?}', [CourAppelController::class, 'Utilisateur'])->name('UtilisateurTpi');
 
+Route::get('/statiqtique', [DemandeurController::class, 'filtrerStatistiques'])->name('statistique');
 
 require __DIR__.'/auth.php';
