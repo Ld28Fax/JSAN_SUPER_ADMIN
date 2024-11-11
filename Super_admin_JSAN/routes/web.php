@@ -31,7 +31,7 @@ App::setLocale('fr'); // ou 'en' pour anglais
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
 Route::get('/dashboard', [HomeController::class, 'home_liste'])->middleware(['auth', 'verified'])->name('dashboard');

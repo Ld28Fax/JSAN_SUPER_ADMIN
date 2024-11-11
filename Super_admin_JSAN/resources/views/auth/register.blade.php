@@ -69,7 +69,7 @@
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('Inscrire') }}
+                {{ __('S\'Inscrire') }}
             </x-primary-button>
         </div>
     </form>

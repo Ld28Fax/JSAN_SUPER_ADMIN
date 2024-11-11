@@ -56,36 +56,32 @@ class DemandeurController extends Controller
         $fin = Carbon::create(null, $fin_mois, $fin_jour)->endOfDay();
     
         $nombreDemandeursPeriode = DB::table('demandeur')
-            ->where('usertpi', '=', Auth::id())
             ->whereBetween('created_at', [$debut, $fin])
             ->count();
         
         $nombreDemandeursActifPeriode = DB::table('demandeur')
-            ->where('usertpi', '=', Auth::id())
             ->where('etat', '=', 1)
             ->whereBetween('created_at', [$debut, $fin])
             ->count();
             
         $nombreDemandeursInactifPeriode = DB::table('demandeur')
-            ->where('usertpi', '=', Auth::id())
             ->where('etat', '=', 0)
             ->whereBetween('created_at', [$debut, $fin])
             ->count();
             
         $nombreDemandeursRefuséPeriode = DB::table('demandeur')
-            ->where('usertpi', '=', Auth::id())
             ->where('etat', '=', 2)
             ->whereBetween('created_at', [$debut, $fin])
             ->count();
     
     
-        $nombreDemandeurs = DB::table('demandeur')->where('usertpi', '=', Auth::id())->count();           
+        $nombreDemandeurs = DB::table('demandeur')->count();           
         
-        $nombreDemandeursActif = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 1)->count();
+        $nombreDemandeursActif = DB::table('demandeur')->where('etat', '=', 1)->count();
         
-        $nombreDemandeursInactif = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 0)->count();
+        $nombreDemandeursInactif = DB::table('demandeur')->where('etat', '=', 0)->count();
         
-        $nombreDemandeursRefusé = DB::table('demandeur')->where('usertpi', '=', Auth::id())->where('etat', '=', 2)->count();
+        $nombreDemandeursRefusé = DB::table('demandeur')->where('etat', '=', 2)->count();
 
     
         return view('demandeurs.statistique')
