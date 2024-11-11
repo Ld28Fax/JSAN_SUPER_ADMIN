@@ -120,7 +120,7 @@
                 <div class="container-fluid">
                     <div class="card header m-2">
                         <h1>Période à saisir :</h1>
-                        {{-- <form id="statisticForm" class="text-center row mb-3" style="margin-left: 0.1%" method="POST" action="{{ route('filtrer_statistiques') }}"> --}}
+                        <form id="statisticForm" class="text-center row mb-3" style="margin-left: 0.1%" method="POST" action="{{ route('filtrer_statistiques') }}">
                             @csrf
                             <div class="form-group col-md-6">
                                 <label for="debut_jour">Début</label>

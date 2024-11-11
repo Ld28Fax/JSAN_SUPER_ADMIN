@@ -26,7 +26,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeurs }}</h3>
+                            <h3 class="number-shadow icon" style="margin-top: -10%;">{{ $nombreDemandeurs }}</h3>
                             <h4>Total Demandeurs</h4>
                         </div>
                         <div class="icon">
@@ -39,7 +39,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursActif }}</h3>
+                            <h3 class="number-shadow icon" style="margin-top: -10%;">{{ $nombreDemandeursActif }}</h3>
                             <h4>Dossier Accepter</h4>
                         </div>
                         <div class="icon">
@@ -52,7 +52,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursRefusé }}</h3>
+                            <h3 class="number-shadow icon" style="margin-top: -10%;">{{ $nombreDemandeursRefusé }}</h3>
                             <h4>Dossier Renvoyé</h4>
                         </div>
                         <div class="icon">
@@ -65,8 +65,8 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3 class="number-shadow icon" style="margin-top: -13%;">{{ $nombreDemandeursInactif }}</h3>
-                            <h4 style="color: white">En cours de traitement</h4>
+                            <h3 class="number-shadow icon" style="margin-top: -10%;">{{ $nombreDemandeursInactif }}</h3>
+                            <h4 style="color: white">En cours... </h4>
                         </div>
                         <div class="icon">
                             <i class="fas fa-hourglass-start"></i>

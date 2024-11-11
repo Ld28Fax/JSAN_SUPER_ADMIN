@@ -77,12 +77,14 @@ Route::get('statistic', [PeriodeController::class, 'getStatistic'])->name('Perio
 Route::get('/liste_utilisateur', [UtilisateurController::class, 'index'])->name('Utilisateur');
 
 Route::get('/error-page', function () {
-    return view('error-page'); // Assurez-vous que le fichier error-page.blade.php existe dans le répertoire resources/views
+    return view('error-page');
 })->name('error.page');
 
 Route::get('/Cour_appel', [UtilisateurController::class, 'index'])->name('Utilisateur');
 Route::get('/UtilisateurTpi/{id?}', [CourAppelController::class, 'Utilisateur'])->name('UtilisateurTpi');
 
 Route::get('/statiqtique', [DemandeurController::class, 'filtrerStatistiques'])->name('statistique');
+
+Route::post('/filtrer-statistiques', [DemandeurController::class, 'filtrerStatistiques'])->name('filtrer_statistiques');
 
 require __DIR__.'/auth.php';
